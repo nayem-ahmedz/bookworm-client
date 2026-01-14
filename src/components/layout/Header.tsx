@@ -3,14 +3,14 @@ import { useUserProvider } from "@/hooks/useUserProvider";
 import { navLinkT } from "@/types/navLinkT";
 import Link from "next/link";
 import Logout from "../auth/Logout";
+import Logo from "../ui/Logo";
 
 export default function Header() {
     const navLinks: navLinkT[] = [
         { id: 1, text: 'Home', url: '/home' },
         { id: 2, text: 'Books', url: '/books' },
         { id: 3, text: 'My Library', url: '/my-library' },
-        { id: 4, text: 'Tutorials', url: '/tutorials' },
-        { id: 5, text: 'Dashboard', url: '/dashboard' }
+        { id: 4, text: 'Tutorials', url: '/tutorials' }
     ];
     const { loading, currentUser } = useUserProvider();
     return (
@@ -31,7 +31,11 @@ export default function Header() {
                             }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">BookWorm</a>
+                    {/* <a className="btn btn-ghost text-xl">BookWorm</a> */}
+                    <Link href='/home' className="btn btn-ghost text-xl">
+                        <Logo className="w-12 md:w-14" />
+                        BookWorm
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

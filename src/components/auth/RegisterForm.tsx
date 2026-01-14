@@ -84,7 +84,7 @@ export default function RegisterForm() {
                 </button>
             </fieldset>
             <p className="mt-3 text-center">
-                Already have a account? <Link href='/login'>Login</Link>
+                Already have a account? <Link href='/login' className='hover:underline'>Login</Link>
             </p>
         </form>
     );

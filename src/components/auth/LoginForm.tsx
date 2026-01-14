@@ -48,7 +48,7 @@ export default function LoginForm() {
                 </button>
             </fieldset>
             <p className="mt-3 text-center">
-                Dont have a account? <Link href='/register'>Register</Link>
+                Dont have a account? <Link href='/register' className='hover:underline'>Register</Link>
             </p>
         </form>
     );

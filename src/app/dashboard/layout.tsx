@@ -15,7 +15,6 @@ import Logout from "@/components/auth/Logout";
 
 export default async function PublicRoot({ children }: { children: React.ReactNode }) {
     const currentUser = await getServerUser();
-    console.log(currentUser);
     const navLinks: dashNavLinkT[] = [
         { id: 1, text: "Dashboard", url: "/dashboard/home", icon: RiDashboardFill },
         { id: 2, text: "Manage Books", url: "/dashboard/manage-books", icon: RiBook3Fill },
@@ -35,13 +34,10 @@ export default async function PublicRoot({ children }: { children: React.ReactNo
                             <FaBars />
                         </label>
                         <div className="px-4 grow">Dashboard</div>
-                        <div>
-                            <Link href='/' className="btn btn-secondary btn-outline">Exit Dashboard</Link>
-                        </div>
                         <div> <Logout className="btn btn-secondary" /> </div>
                     </nav>
                     {/* Page content here */}
-                    <div className="p-4">
+                    <div className="p-4 md:p-6 md:py-10">
                         {
                             children
                         }

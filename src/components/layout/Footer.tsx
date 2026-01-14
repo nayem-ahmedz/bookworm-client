@@ -4,28 +4,30 @@ import { FaGithub } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
+import Logo from "../ui/Logo";
 
 export default function Footer() {
     return (
         <footer className="bg-base-200">
             <section className="footer sm:footer-horizontal text-base-content p-4 md:p-6 containerr gap-6">
                 <aside className="gap-0">
+                    <Logo className="w-16" />
                     <h4 className="text-2xl">BookWorm</h4>
-                    <p className="text-xl mb-2">Join in the largest book library and read</p>
+                    <p className="text-base md:text-xl mb-2">Join in the largest book library and read</p>
                     <p>Copyright © {new Date().getFullYear()} - All right reserved by BookWorm</p>
                 </aside>
                 <nav>
                     <h6 className="footer-title mb-0 md:mb-2">BookWorm</h6>
                     <Link href='/home' className="link link-hover">Home</Link>
-                    <Link href='/home' className="link link-hover">Home</Link>
-                    <Link href='/home' className="link link-hover">Home</Link>
-                    <Link href='/home' className="link link-hover">Home</Link>
+                    <Link href='/books' className="link link-hover">Books</Link>
+                    <Link href='/my-library' className="link link-hover">My Library</Link>
+                    <Link href='/tutorials' className="link link-hover">Tutorials</Link>
                 </nav>
                 <nav>
                     <h6 className="footer-title mb-0 md:mb-2">Quick Links</h6>
                     <Link href='/home'>Home</Link>
-                    <Link href='/books'>Books</Link>
-                    <Link href='/my-library'>My Library</Link>
+                    <Link href='/login'>Login</Link>
+                    <Link href='/register'>Register</Link>
                 </nav>
                 <nav>
                     <h6 className="footer-title mb-0 md:mb-2">Contact</h6>
