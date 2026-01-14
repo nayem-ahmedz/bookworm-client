@@ -49,6 +49,7 @@ export default function ManageBooksPage() {
     };
     return (
         <div className="space-y-6">
+            <title>Manage Books</title>
             {/* Header */}
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold">Manage Books</h1>
