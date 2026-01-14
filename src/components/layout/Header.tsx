@@ -2,9 +2,11 @@
 import { useUserProvider } from "@/hooks/useUserProvider";
 import { navLinkT } from "@/types/navLinkT";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
 export default function Header() {
+    const router = useRouter();
     const navLinks: navLinkT[] = [
         { id: 1, text: 'Home', url: '/home' },
         { id: 2, text: 'Books', url: '/books' },
@@ -27,6 +29,7 @@ export default function Header() {
         if (result.isConfirmed) {
             try {
                 await logout();
+                router.push('/login');
                 Swal.fire({
                     title: "Logged Out!",
                     text: "You have been logged out successfully.",

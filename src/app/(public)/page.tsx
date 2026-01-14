@@ -1,15 +1,13 @@
-import { cookies } from "next/headers";
+import { getServerUser } from '@/lib/authService';
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-  // const cookieStore = await cookies();
-  // const user = cookieStore.get('user')?.value;
-  // console.log(cookieStore, user);
-
-  // if(!user) redirect('/login');
-
-  // if(user?.role === 'admin') redirect('/dashboard');
-
-  // redirect('/my-library');
-  return(<h1>home</h1>)
+    const user = await getServerUser();
+    if(!user){
+        return redirect('/login');
+    }
+    if(user.role === 'admin'){
+        return redirect('/dashboard');
+    }
+    return redirect('/my-library');
 }
