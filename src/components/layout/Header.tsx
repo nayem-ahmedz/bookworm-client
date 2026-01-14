@@ -2,45 +2,17 @@
 import { useUserProvider } from "@/hooks/useUserProvider";
 import { navLinkT } from "@/types/navLinkT";
 import Link from "next/link";
-import Swal from "sweetalert2";
+import Logout from "../auth/Logout";
+import Logo from "../ui/Logo";
 
 export default function Header() {
     const navLinks: navLinkT[] = [
         { id: 1, text: 'Home', url: '/home' },
         { id: 2, text: 'Books', url: '/books' },
         { id: 3, text: 'My Library', url: '/my-library' },
-        { id: 4, text: 'Tutorials', url: '/tutorials' },
-        { id: 5, text: 'Dashboard', url: '/dashboard' }
+        { id: 4, text: 'Tutorials', url: '/tutorials' }
     ];
-    const { loading, currentUser, logout } = useUserProvider();
-    const handleLogout = async (): Promise<void> => {
-        const result = await Swal.fire({
-            title: "Ready to logout?",
-            text: "You will need to login again!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, logout!"
-        });
-
-        if (result.isConfirmed) {
-            try {
-                await logout();
-                Swal.fire({
-                    title: "Logged Out!",
-                    text: "You have been logged out successfully.",
-                    icon: "success"
-                });
-            } catch (error) {
-                Swal.fire({
-                    title: "Error!",
-                    text: "Something went wrong while logging out.",
-                    icon: "error"
-                });
-            }
-        }
-    };
+    const { loading, currentUser } = useUserProvider();
     return (
         <header className="bg-base-100 shadow-sm">
             <div className="navbar containerr">
@@ -59,7 +31,11 @@ export default function Header() {
                             }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">BookWorm</a>
+                    {/* <a className="btn btn-ghost text-xl">BookWorm</a> */}
+                    <Link href='/home' className="btn btn-ghost text-xl">
+                        <Logo className="w-12 md:w-14" />
+                        BookWorm
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -85,7 +61,7 @@ export default function Header() {
                                         tabIndex={-1}
                                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                                         <li><Link className="text-base" href='/dashboard'>Dashboard</Link></li>
-                                        <li><button className="text-base" onClick={handleLogout}>Logout</button></li>
+                                        <li> <Logout /> </li>
                                     </ul>
                                 </div> : <Link href='/login' className="text-base btn btn-primary btn-outline">
                                     Login

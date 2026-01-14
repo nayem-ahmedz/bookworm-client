@@ -1,5 +1,5 @@
 'use client';
-import { axiosInstance } from "@/lib/axios";
+import { axiosInstance } from "@/lib/axiosPublic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -84,7 +84,7 @@ export default function RegisterForm() {
                 </button>
             </fieldset>
             <p className="mt-3 text-center">
-                Already have a account? <Link href='/login'>Login</Link>
+                Already have a account? <Link href='/login' className='hover:underline'>Login</Link>
             </p>
         </form>
     );

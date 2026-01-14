@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ToastNotificationCont from "@/utils/ToastNotificationCont";
 import UserProvider from "@/contexts/UserProvider";
+import TanstackProvider from "@/contexts/TanstackProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,10 +30,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <UserProvider>
-          {children}
-          <ToastNotificationCont />
-        </UserProvider>
+        <TanstackProvider>
+          <UserProvider>
+            {children}
+            <ToastNotificationCont />
+          </UserProvider>
+        </TanstackProvider>
       </body>
     </html>
   );

@@ -26,7 +26,7 @@ export default function LoginForm() {
                     toast.success(response.data.message || "Login Successful!");
                     setCurrentUser(response.data.user);
                     form.reset();
-                    // router.push(response.data.user.role === 'admin' ? '/dashboard' : '/library');
+                    router.push(response.data.user.role === 'admin' ? '/dashboard' : '/my-library');
                 }
             } catch (error: any) {
                 const errorMessage = error.response?.data?.message || "Invalid credentials";
@@ -48,7 +48,7 @@ export default function LoginForm() {
                 </button>
             </fieldset>
             <p className="mt-3 text-center">
-                Dont have a account? <Link href='/register'>Register</Link>
+                Dont have a account? <Link href='/register' className='hover:underline'>Register</Link>
             </p>
         </form>
     );
