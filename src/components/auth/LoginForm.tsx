@@ -26,7 +26,7 @@ export default function LoginForm() {
                     toast.success(response.data.message || "Login Successful!");
                     setCurrentUser(response.data.user);
                     form.reset();
-                    router.push(response.data.user.role === 'admin' ? '/dashboard' : '/my-library');
+                    router.push('/');
                 }
             } catch (error: any) {
                 const errorMessage = error.response?.data?.message || "Invalid credentials";

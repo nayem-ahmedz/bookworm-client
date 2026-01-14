@@ -3,6 +3,7 @@ import AddBookForm from "@/components/dashboard/books/AddBookForm";
 export default function AddBook() {
     return (
         <div className="hero min-h-[70vh]">
+            <title>Add Book</title>
             <div className="hero-content flex-col lg:flex-row gap-10">
                 <div className="text-center lg:text-left gap-0">
                     <h1 className="text-3xl md:text-5xl/tight font-bold">Add Book</h1>

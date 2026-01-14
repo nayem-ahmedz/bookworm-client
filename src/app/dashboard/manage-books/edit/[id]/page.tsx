@@ -83,6 +83,7 @@ export default function EditBook() {
     if (!bookData) return <p>Loading book data...</p>;
     return (
         <div className="hero min-h-[70vh]">
+            <title>Edit Book</title>
             <div className="hero-content flex-col lg:flex-row gap-10">
                 <div className="text-center lg:text-left gap-0">
                     <h1 className="text-3xl md:text-5xl/tight font-bold">Edit Book</h1>

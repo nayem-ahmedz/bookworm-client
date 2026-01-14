@@ -3,6 +3,7 @@ import LoginForm from "@/components/auth/LoginForm";
 export default function Login() {
     return (
         <div className="hero min-h-[70vh]">
+            <title>Login | BookWorm</title>
             <div className="hero-content flex-col lg:flex-row gap-10">
                 <div className="text-center lg:text-left gap-0">
                     <h1 className="text-5xl font-bold text-nowrap">Welcome Back</h1>
