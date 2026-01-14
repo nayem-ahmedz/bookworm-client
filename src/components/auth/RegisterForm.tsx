@@ -1,5 +1,5 @@
 'use client';
-import { axiosInstance } from "@/lib/axios";
+import { axiosInstance } from "@/lib/axiosPublic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

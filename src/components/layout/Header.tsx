@@ -2,11 +2,9 @@
 import { useUserProvider } from "@/hooks/useUserProvider";
 import { navLinkT } from "@/types/navLinkT";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
+import Logout from "../auth/Logout";
 
 export default function Header() {
-    const router = useRouter();
     const navLinks: navLinkT[] = [
         { id: 1, text: 'Home', url: '/home' },
         { id: 2, text: 'Books', url: '/books' },
@@ -14,36 +12,7 @@ export default function Header() {
         { id: 4, text: 'Tutorials', url: '/tutorials' },
         { id: 5, text: 'Dashboard', url: '/dashboard' }
     ];
-    const { loading, currentUser, logout } = useUserProvider();
-    const handleLogout = async (): Promise<void> => {
-        const result = await Swal.fire({
-            title: "Ready to logout?",
-            text: "You will need to login again!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, logout!"
-        });
-
-        if (result.isConfirmed) {
-            try {
-                await logout();
-                router.push('/login');
-                Swal.fire({
-                    title: "Logged Out!",
-                    text: "You have been logged out successfully.",
-                    icon: "success"
-                });
-            } catch (error) {
-                Swal.fire({
-                    title: "Error!",
-                    text: "Something went wrong while logging out.",
-                    icon: "error"
-                });
-            }
-        }
-    };
+    const { loading, currentUser } = useUserProvider();
     return (
         <header className="bg-base-100 shadow-sm">
             <div className="navbar containerr">
@@ -88,7 +57,7 @@ export default function Header() {
                                         tabIndex={-1}
                                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                                         <li><Link className="text-base" href='/dashboard'>Dashboard</Link></li>
-                                        <li><button className="text-base" onClick={handleLogout}>Logout</button></li>
+                                        <li> <Logout /> </li>
                                     </ul>
                                 </div> : <Link href='/login' className="text-base btn btn-primary btn-outline">
                                     Login
