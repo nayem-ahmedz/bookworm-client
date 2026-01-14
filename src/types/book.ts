@@ -4,5 +4,6 @@ export interface bookT {
     author: string;
     genre: string;
     coverUrl: string;
+    description: string;
     createdAt?: string;
 }

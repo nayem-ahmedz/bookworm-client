@@ -4,17 +4,49 @@ import Link from "next/link";
 import { bookT } from "@/types/book";
 import { axiosInstance } from "@/lib/axiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 export default function ManageBooksPage() {
     const { data: books = [], refetch } = useQuery<bookT[]>({
         queryKey: ['books'],
         queryFn: async () => {
             const response = await axiosInstance.get('/api/book');
-            console.log(response.data)
+            // console.log(response.data)
             return response.data.books;
         }
     });
-    console.log(books);
+    const handleDelete = async (id: string): Promise<void> => {
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "This will permanently delete the book!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        });
+
+        if (result.isConfirmed) {
+            try {
+                const res = await axiosInstance.delete(`/api/book/${id}`);
+                if (res.data.success) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "The book has been deleted.",
+                        icon: "success"
+                    });
+                    refetch();
+                }
+            } catch (error) {
+                console.error(error);
+                Swal.fire({
+                    title: "Error!",
+                    text: "Something went wrong while deleting the book.",
+                    icon: "error"
+                });
+            }
+        }
+    };
     return (
         <div className="space-y-6">
             {/* Header */}
@@ -55,12 +87,12 @@ export default function ManageBooksPage() {
                                     </td>
                                     <td className="flex gap-2">
                                         <Link
-                                            href={`/admin/manage-books/edit/${book._id}`}
+                                            href={`/dashboard/manage-books/edit/${book._id}`}
                                             className="btn btn-sm btn-outline"
                                         >
                                             Edit
                                         </Link>
-                                        <button className="btn btn-sm btn-error">
+                                        <button onClick={() => handleDelete(book._id)} className="btn btn-sm btn-error">
                                             Delete
                                         </button>
                                     </td>
